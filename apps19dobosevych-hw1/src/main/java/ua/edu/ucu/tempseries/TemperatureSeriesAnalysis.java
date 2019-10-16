@@ -1,0 +1,193 @@
+package ua.edu.ucu.tempseries;
+
+import java.util.Arrays;
+import java.util.InputMismatchException;
+
+public class TemperatureSeriesAnalysis {
+    double[] list;
+    int len = 10;
+    int min_temp = -273;
+
+    public TemperatureSeriesAnalysis() {
+        this.list = new double[10];
+        this.len = 10;
+    }
+
+    public TemperatureSeriesAnalysis(double[] temperatureSeries) {
+        this.len = temperatureSeries.length;
+        this.list = Arrays.copyOf(temperatureSeries, temperatureSeries.length);
+        MinTemp(this.list);
+    }
+
+    public  void MinTemp(double[] lst){
+        for(int i = 0; i < lst.length; i ++){
+            if(lst[i] < min_temp){
+                throw new InputMismatchException();
+            }
+        }
+    }
+
+    public double average() {
+        if(this.len > 0){
+            double aver;
+            double sum = 0;
+            for(int i = 0; i < this.len; i ++){
+                sum += this.list[i];
+            }
+            aver = sum / this.len;
+            return aver;
+        }
+        else {
+            throw new IllegalArgumentException();
+        }
+    }
+
+    public double deviation() {
+        if(this.len > 0) {
+            double av = this.average();
+            double divd = 0;
+            for (int i = 0; i < this.len; i++) {
+                divd += (this.list[i] - av)*(this.list[i] - av);
+            }
+            double dev;
+            dev = Math.sqrt(divd / this.len);
+            return dev;
+        }
+        else {
+            throw new IllegalArgumentException();
+        }
+    }
+
+    public double min() {
+        if(this.len > 0){
+            double min = this.list[0];
+            for(int i = 0; i < this.len; i ++){
+                if(this.list[i] < min){
+                    min = this.list[i];
+                }
+            }
+            return min;
+        }
+        else {
+            throw new IllegalArgumentException();
+        }
+    }
+
+    public double max() {
+        if(this.len > 0){
+            double max = this.list[0];
+            for(int i = 0; i < this.len; i ++){
+                if(this.list[i] > max){
+                    max = this.list[i];
+                }
+            }
+            return max;
+        }
+        else {
+            throw new IllegalArgumentException();
+        }
+    }
+
+    public double findTempClosestToZero() {
+        if(this.len > 0){
+            double clos = this.list[0];
+            for(double i : this.list){
+                if(i == 0){
+                    return 0;
+                }
+                if(Math.abs(clos) > Math.abs(i)){
+                    clos = i;
+                }
+                if(Math.abs(clos) == Math.abs(i)){
+                    if(i > clos){
+                    clos = Math.abs(i);
+                }}
+            }
+            return clos;
+            }
+        else {
+            throw new IllegalArgumentException();
+                }
+    }
+
+    public double findTempClosestToValue(double tempValue) {
+        if(this.len > 0){
+            double close = this.list[0];
+            double dis_1 = Math.abs(close - tempValue);
+            for(double i : this.list){
+                double dis_2 = Math.abs(i - tempValue);
+                if(dis_1 > dis_2){
+                    dis_1 = dis_2;
+                    close = i;
+                }
+                if(dis_1 == dis_2){
+                    if(i > close){
+                        close = Math.abs(i);
+                    }
+                }
+                }
+            return close;
+            }
+        else {
+            throw new IllegalArgumentException();
+
+        }
+    }
+
+    public double[] findTempsLessThen(double tempValue) {
+        if(this.len == 0){
+            throw new IllegalArgumentException();
+        }
+        int counter = 0;
+        for(double i: this.list){
+            if(i < tempValue){
+                counter += 1;
+            }
+        }
+        double[] res = new double[counter];
+        int co_new = 0;
+        for(double i : this.list){
+            if(i < tempValue){
+                res[co_new] = i;
+                co_new += 1;
+            }
+        }
+        return res;
+    }
+
+    public double[] findTempsGreaterThen(double tempValue) {
+        if(this.len == 0){
+            throw new IllegalArgumentException();
+        }
+        int count_1 = 0;
+        for(double i: this.list){
+            if(i >= tempValue){
+                count_1 += 1;
+            }
+        }
+        int counter = 0;
+        double[] res = new double[count_1];
+        for(double i: this.list){
+            if(i >= tempValue){
+                res[counter] = i;
+                counter += 1;
+            }
+        }
+        return res;
+    }
+
+    public TempSummaryStatistics summaryStatistics() {
+        if(this.len == 0){
+            throw new IllegalArgumentException();
+        }
+        else{
+            TempSummaryStatistics sts = new TempSummaryStatistics(average(), deviation(), min(), max());
+            return sts;
+        }
+    }
+
+    public int addTemps(double... temps) {
+        MinTemp(temps);
+        return 0;
+    }
+}
