@@ -95,11 +95,11 @@ public class TemperatureSeriesAnalysis {
                 if (i == 0) {
                     return 0;
                 }
-                if(Math.abs(clos) > Math.abs(i)){
+                if (Math.abs(clos) > Math.abs(i)) {
                     clos = i;
                 }
-                if(Math.abs(clos) == Math.abs(i)){
-                    if(i > clos){
+                if (Math.abs(clos) == Math.abs(i)) {
+                    if (i > clos) {
                     clos = Math.abs(i);
                 }}
             }
@@ -111,17 +111,17 @@ public class TemperatureSeriesAnalysis {
     }
 
     public double findTempClosestToValue(double tempValue) {
-        if(this.len > 0){
+        if (this.len > 0) {
             double close = this.list[0];
             double disf = Math.abs(close - tempValue);
-            for(double i : this.list){
+            for (double i : this.list) {
                 double diss = Math.abs(i - tempValue);
-                if(disf > diss){
+                if (disf > diss) {
                     disf = diss;
                     close = i;
                 }
-                if(disf == diss){
-                    if(i > close){
+                if (disf == diss) {
+                    if (i > close) {
                         close = Math.abs(i);
                     }
                 }
@@ -135,19 +135,19 @@ public class TemperatureSeriesAnalysis {
     }
 
     public double[] findTempsLessThen(double tempValue) {
-        if(this.len == 0){
+        if (this.len == 0) {
             throw new IllegalArgumentException();
         }
         int counter = 0;
         for(double i: this.list){
-            if(i < tempValue){
+            if (i < tempValue) {
                 counter += 1;
             }
         }
         double[] res = new double[counter];
         int conew = 0;
-        for(double i : this.list){
-            if(i < tempValue){
+        for (double i : this.list) {
+            if (i < tempValue) {
                 res[conew] = i;
                 conew += 1;
             }
@@ -156,19 +156,19 @@ public class TemperatureSeriesAnalysis {
     }
 
     public double[] findTempsGreaterThen(double tempValue) {
-        if(this.len == 0){
+        if (this.len == 0) {
             throw new IllegalArgumentException();
         }
         int countf = 0;
-        for(double i: this.list){
-            if(i >= tempValue){
+        for (double i: this.list) {
+            if (i >= tempValue) {
                 countf += 1;
             }
         }
         int counter = 0;
         double[] res = new double[countf];
         for(double i: this.list){
-            if(i >= tempValue){
+            if (i >= tempValue) {
                 res[counter] = i;
                 counter += 1;
             }
@@ -177,10 +177,10 @@ public class TemperatureSeriesAnalysis {
     }
 
     public TempSummaryStatistics summaryStatistics() {
-        if(this.len == 0){
+        if (this.len == 0) {
             throw new IllegalArgumentException();
         }
-        else{
+        else {
             TempSummaryStatistics sts = new TempSummaryStatistics(average(),
                     deviation(), min(), max());
             return sts;
@@ -193,10 +193,10 @@ public class TemperatureSeriesAnalysis {
         int ln = this.len;
         list = new double[ln * 2];
         len = list.length;
-        for(int i = 0; i < ln; i++){
+        for (int i = 0; i < ln; i++) {
             list[i] = nlist[i];
         }
-        for(int i = 0; i < temps.length; i++){
+        for (int i = 0; i < temps.length; i++) {
             list[ln + i] = temps[i];
         }
         int res = ln + temps.length;
