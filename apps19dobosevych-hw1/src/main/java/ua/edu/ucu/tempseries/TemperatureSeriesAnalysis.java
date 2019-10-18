@@ -19,19 +19,19 @@ public class TemperatureSeriesAnalysis {
         MinTemp(this.list);
     }
 
-    public  void MinTemp(double[] lst){
-        for(int i = 0; i < lst.length; i ++){
-            if(lst[i] < min_temp){
+    public  void MinTemp(double[] lst) {
+        for (int i = 0; i < lst.length; i ++) {
+            if (lst[i] < min_temp) {
                 throw new InputMismatchException();
             }
         }
     }
 
     public double average() {
-        if(this.len > 0){
+        if (this.len > 0) {
             double aver;
             double sum = 0;
-            for(int i = 0; i < this.len; i ++){
+            for (int i = 0; i < this.len; i ++) {
                 sum += this.list[i];
             }
             aver = sum / this.len;
@@ -43,7 +43,7 @@ public class TemperatureSeriesAnalysis {
     }
 
     public double deviation() {
-        if(this.len > 0) {
+        if (this.len > 0) {
             double av = this.average();
             double divd = 0;
             for (int i = 0; i < this.len; i++) {
@@ -59,10 +59,10 @@ public class TemperatureSeriesAnalysis {
     }
 
     public double min() {
-        if(this.len > 0){
+        if (this.len > 0) {
             double min = this.list[0];
-            for(int i = 0; i < this.len; i ++){
-                if(this.list[i] < min){
+            for (int i = 0; i < this.len; i ++) {
+                if (this.list[i] < min) {
                     min = this.list[i];
                 }
             }
@@ -74,10 +74,10 @@ public class TemperatureSeriesAnalysis {
     }
 
     public double max() {
-        if(this.len > 0){
+        if (this.len > 0) {
             double max = this.list[0];
-            for(int i = 0; i < this.len; i ++){
-                if(this.list[i] > max){
+            for (int i = 0; i < this.len; i ++) {
+                if (this.list[i] > max) {
                     max = this.list[i];
                 }
             }
@@ -89,10 +89,10 @@ public class TemperatureSeriesAnalysis {
     }
 
     public double findTempClosestToZero() {
-        if(this.len > 0){
+        if (this.len > 0) {
             double clos = this.list[0];
-            for(double i : this.list){
-                if(i == 0){
+            for (double i : this.list) {
+                if (i == 0) {
                     return 0;
                 }
                 if(Math.abs(clos) > Math.abs(i)){
