@@ -113,14 +113,14 @@ public class TemperatureSeriesAnalysis {
     public double findTempClosestToValue(double tempValue) {
         if(this.len > 0){
             double close = this.list[0];
-            double dis_1 = Math.abs(close - tempValue);
+            double dis1 = Math.abs(close - tempValue);
             for(double i : this.list){
-                double dis_2 = Math.abs(i - tempValue);
-                if(dis_1 > dis_2){
-                    dis_1 = dis_2;
+                double dis2 = Math.abs(i - tempValue);
+                if(dis1 > dis2){
+                    dis1 = dis2;
                     close = i;
                 }
-                if(dis_1 == dis_2){
+                if(dis1 == dis2){
                     if(i > close){
                         close = Math.abs(i);
                     }
@@ -145,11 +145,11 @@ public class TemperatureSeriesAnalysis {
             }
         }
         double[] res = new double[counter];
-        int co_new = 0;
+        int conew = 0;
         for(double i : this.list){
             if(i < tempValue){
-                res[co_new] = i;
-                co_new += 1;
+                res[conew] = i;
+                conew += 1;
             }
         }
         return res;
@@ -159,14 +159,14 @@ public class TemperatureSeriesAnalysis {
         if(this.len == 0){
             throw new IllegalArgumentException();
         }
-        int count_1 = 0;
+        int count1 = 0;
         for(double i: this.list){
             if(i >= tempValue){
-                count_1 += 1;
+                count1 += 1;
             }
         }
         int counter = 0;
-        double[] res = new double[count_1];
+        double[] res = new double[count1];
         for(double i: this.list){
             if(i >= tempValue){
                 res[counter] = i;
@@ -181,7 +181,8 @@ public class TemperatureSeriesAnalysis {
             throw new IllegalArgumentException();
         }
         else{
-            TempSummaryStatistics sts = new TempSummaryStatistics(average(), deviation(), min(), max());
+            TempSummaryStatistics sts = new TempSummaryStatistics(average(),
+                    deviation(), min(), max());
             return sts;
         }
     }
