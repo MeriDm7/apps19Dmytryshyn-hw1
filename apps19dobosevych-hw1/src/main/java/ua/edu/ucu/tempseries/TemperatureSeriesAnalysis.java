@@ -188,26 +188,6 @@ public class TemperatureSeriesAnalysis {
 
     public int addTemps(double... temps) {
         MinTemp(temps);
-        /*
-        int old_len = len;
-        len = len * 2;
-        double[] old = Arrays.copyOf(list, old_len);
-        list = new double[len];
-        for (int i = 0; i < old_len; i++) {
-            list[i] = old[i];
-        }
-        for (int i = old_len; i < len; i++) {
-            try {
-                list[i] = temps[i - old_len];
-            } catch (IndexOutOfBoundsException exception) {
-                list = new double[1];
-                list[0] = temps[0];
-            }
-        }
-        int res = old_len + temps.length;
-        return res;
-
-         */
         double[] nlist = Arrays.copyOf(this.list, this.len);
         int ln = this.len;
         list = new double[ln * 2];
