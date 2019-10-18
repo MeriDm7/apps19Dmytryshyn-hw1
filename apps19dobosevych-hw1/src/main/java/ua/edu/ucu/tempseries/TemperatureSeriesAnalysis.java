@@ -20,7 +20,7 @@ public class TemperatureSeriesAnalysis {
     }
 
     public  void minTemp(double[] lst) {
-        for (int i = 0; i < lst.length; i ++) {
+        for (int i = 0; i < lst.length; i++) {
             if (lst[i] < mintemp) {
                 throw new InputMismatchException();
             }
@@ -31,7 +31,7 @@ public class TemperatureSeriesAnalysis {
         if (this.len > 0) {
             double aver;
             double sum = 0;
-            for (int i = 0; i < this.len; i ++) {
+            for (int i = 0; i < this.len; i++) {
                 sum += this.list[i];
             }
             aver = sum / this.len;
@@ -61,7 +61,7 @@ public class TemperatureSeriesAnalysis {
     public double min() {
         if (this.len > 0) {
             double min = this.list[0];
-            for (int i = 0; i < this.len; i ++) {
+            for (int i = 0; i < this.len; i++) {
                 if (this.list[i] < min) {
                     min = this.list[i];
                 }
@@ -76,7 +76,7 @@ public class TemperatureSeriesAnalysis {
     public double max() {
         if (this.len > 0) {
             double max = this.list[0];
-            for (int i = 0; i < this.len; i ++) {
+            for (int i = 0; i < this.len; i++) {
                 if (this.list[i] > max) {
                     max = this.list[i];
                 }
@@ -196,7 +196,7 @@ public class TemperatureSeriesAnalysis {
         for(int i = 0; i < ln; i++){
             list[i] = nlist[i];
         }
-        for(int i = 0; i < temps.length; i ++){
+        for(int i = 0; i < temps.length; i++){
             list[ln + i] = temps[i];
         }
         int res = ln + temps.length;
