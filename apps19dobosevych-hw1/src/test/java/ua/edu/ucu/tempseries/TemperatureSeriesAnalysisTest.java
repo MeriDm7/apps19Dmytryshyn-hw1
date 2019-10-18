@@ -265,5 +265,39 @@ public class TemperatureSeriesAnalysisTest {
         seriesAnalysis.findTempsGreaterThen(0.0);
     }
 
+    @Test
+    public void TestSummaryStatistics() {
+        double[] temperatureSeries = {11.36, 11.09, 11.16, 11.47};
+        TemperatureSeriesAnalysis seriesAnalysis = new TemperatureSeriesAnalysis(temperatureSeries);
+        TempSummaryStatistics stat = seriesAnalysis.summaryStatistics();
+        assertArrayEquals(new double[]{11.27, 0.152151, 11.47, 11.09},
+                new double[]{stat.getAvgTemp(), stat.getDevTemp(), stat.getMaxTemp(), stat.getMinTemp()}, 0.01);
+    }
+
+    @Test
+    public void TestAddTemps() {
+        double[] temps = {11.36, 11.09, 11.16, 11.47};
+        double[] temperatureSeries = {3.0, -5.0, 1.0, -1.0, 5.0};
+        TemperatureSeriesAnalysis seriesAnalysis = new TemperatureSeriesAnalysis(temperatureSeries);
+        int expResult = 9;
+
+        int actualResult = seriesAnalysis.addTemps(temps);
+
+        assertEquals(expResult, actualResult);
+    }
+
+    @Test(expected = InputMismatchException.class)
+    public void TestAddTempsEror() {
+        double[] temps = {11.36, 11.09, 11.16, 11.47, -300};
+        double[] temperatureSeries = {3.0, -5.0, 1.0, -1.0, 5.0};
+        TemperatureSeriesAnalysis seriesAnalysis = new TemperatureSeriesAnalysis(temperatureSeries);
+
+        seriesAnalysis.addTemps(temps);
+    }
+
+
+
+
+
 }
 
