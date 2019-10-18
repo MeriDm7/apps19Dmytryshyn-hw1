@@ -101,7 +101,8 @@ public class TemperatureSeriesAnalysis {
                 if (Math.abs(clos) == Math.abs(i)) {
                     if (i > clos) {
                     clos = Math.abs(i);
-                }}
+                }
+                }
             }
             return clos;
             }
@@ -139,7 +140,7 @@ public class TemperatureSeriesAnalysis {
             throw new IllegalArgumentException();
         }
         int counter = 0;
-        for(double i: this.list){
+        for (double i: this.list) {
             if (i < tempValue) {
                 counter += 1;
             }
@@ -167,7 +168,7 @@ public class TemperatureSeriesAnalysis {
         }
         int counter = 0;
         double[] res = new double[countf];
-        for(double i: this.list){
+        for (double i: this.list) {
             if (i >= tempValue) {
                 res[counter] = i;
                 counter += 1;
