@@ -96,7 +96,7 @@ public class TemperatureSeriesAnalysis {
                 if (Math.abs(clos) > Math.abs(i)) {
                     clos = i;
                 }
-                if (Math.abs(clos) == Math.abs(i)) {
+                if (Math.abs(Math.abs(clos) - Math.abs(i)) < 0.00001) {
                     if (i > clos) {
                     clos = Math.abs(i);
                 }
@@ -119,7 +119,7 @@ public class TemperatureSeriesAnalysis {
                     disf = diss;
                     close = i;
                 }
-                if (disf == diss) {
+                if (Math.abs(disf - diss) < 00000.1) {
                     if (i > close) {
                         close = Math.abs(i);
                     }
