@@ -42,11 +42,31 @@ public class TemperatureSeriesAnalysisTest {
         assertEquals(expResult, actualResult, 0.00001);        
     }
 
+    @Test(expected = IllegalArgumentException.class)
+    public void testFindTempClosestToZeroWithEmptyArray() {
+        double[] temperatureSeries = {};
+        TemperatureSeriesAnalysis seriesAnalysis = new TemperatureSeriesAnalysis(temperatureSeries);
+
+        // expect exception here
+        seriesAnalysis.findTempClosestToZero();
+    }
+
+    @Test
+    public void testFindTempClosestToZeroWithOneElementArray() {
+        double[] temperatureSeries = {4.0};
+        TemperatureSeriesAnalysis seriesAnalysis = new TemperatureSeriesAnalysis(temperatureSeries);
+        double expResult = 4.0;
+
+        double actualResult = seriesAnalysis.findTempClosestToZero();
+
+        assertEquals(expResult, actualResult, 0.00001);
+    }
+
     @Test
     public void testFindTempClosestToZero() {
-        double[] temperatureSeries = {0.0, -5.0, -1.0, 5.0};
+        double[] temperatureSeries = {3.0, -5.0, 1.0, -1.0, 5.0};
         TemperatureSeriesAnalysis seriesAnalysis = new TemperatureSeriesAnalysis(temperatureSeries);
-        double expResult = 0.0;
+        double expResult = 1.0;
 
         double actualResult = seriesAnalysis.findTempClosestToZero();
 

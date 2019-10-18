@@ -4,9 +4,9 @@ import java.util.Arrays;
 import java.util.InputMismatchException;
 
 public class TemperatureSeriesAnalysis {
-    double[] list;
-    int len = 10;
-    int mintemp = -273;
+    private double[] list;
+    private int len = 10;
+    private int mintemp = -273;
 
     public TemperatureSeriesAnalysis() {
         this.list = new double[10];
