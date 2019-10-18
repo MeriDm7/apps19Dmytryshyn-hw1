@@ -5,6 +5,7 @@ import org.junit.Test;
 import org.junit.Ignore;
 
 import java.util.Arrays;
+import java.util.InputMismatchException;
 
 public class TemperatureSeriesAnalysisTest {
 
@@ -29,6 +30,13 @@ public class TemperatureSeriesAnalysisTest {
 
         // expect exception here
         seriesAnalysis.average();
+    }
+
+    @Test(expected = InputMismatchException.class)
+    public void testSetUp() {
+        double[] temperatureSeries = {-300.0, 1.0, 30.0};
+        TemperatureSeriesAnalysis seriesAnalysis = new TemperatureSeriesAnalysis(temperatureSeries);
+        seriesAnalysis.minTemp(temperatureSeries);
     }
 
     @Test
@@ -209,6 +217,25 @@ public class TemperatureSeriesAnalysisTest {
     }
 
     @Test
+    public void testFindTempsLessThenWithOneElementArray() {
+        double[] temperatureSeries = {5.0};
+        TemperatureSeriesAnalysis seriesAnalysis = new TemperatureSeriesAnalysis(temperatureSeries);
+        double[] expResult = {};
+
+        double[] actualResult = seriesAnalysis.findTempsLessThen(1.1);
+
+        assertTrue(Arrays.equals(expResult, actualResult));
+    }
+
+    @Test(expected = IllegalArgumentException.class)
+    public void testFindTempsLessThenWithEmptyArray() {
+        double[] temperatureSeries = {};
+        TemperatureSeriesAnalysis seriesAnalysis = new TemperatureSeriesAnalysis(temperatureSeries);
+
+        seriesAnalysis.findTempsLessThen(1.1);
+    }
+
+    @Test
     public void testFindTempsGreaterThen() {
         double[] temperatureSeries = {3.0, -5.0, 1.0, -1.0, 5.0};
         TemperatureSeriesAnalysis seriesAnalysis = new TemperatureSeriesAnalysis(temperatureSeries);
@@ -218,5 +245,7 @@ public class TemperatureSeriesAnalysisTest {
 
         assertTrue(Arrays.equals(expResult, actualResult));
     }
+
+    
 }
 
