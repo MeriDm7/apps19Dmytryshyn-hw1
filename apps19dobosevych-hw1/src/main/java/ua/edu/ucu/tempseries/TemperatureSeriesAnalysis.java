@@ -6,7 +6,7 @@ import java.util.InputMismatchException;
 public class TemperatureSeriesAnalysis {
     double[] list;
     int len = 10;
-    int min_temp = -273;
+    int mintemp = -273;
 
     public TemperatureSeriesAnalysis() {
         this.list = new double[10];
@@ -16,12 +16,12 @@ public class TemperatureSeriesAnalysis {
     public TemperatureSeriesAnalysis(double[] temperatureSeries) {
         this.len = temperatureSeries.length;
         this.list = Arrays.copyOf(temperatureSeries, temperatureSeries.length);
-        MinTemp(this.list);
+        minTemp(this.list);
     }
 
-    public  void MinTemp(double[] lst) {
+    public  void minTemp(double[] lst) {
         for (int i = 0; i < lst.length; i ++) {
-            if (lst[i] < min_temp) {
+            if (lst[i] < mintemp) {
                 throw new InputMismatchException();
             }
         }
@@ -113,14 +113,14 @@ public class TemperatureSeriesAnalysis {
     public double findTempClosestToValue(double tempValue) {
         if(this.len > 0){
             double close = this.list[0];
-            double dis1 = Math.abs(close - tempValue);
+            double disf = Math.abs(close - tempValue);
             for(double i : this.list){
-                double dis2 = Math.abs(i - tempValue);
-                if(dis1 > dis2){
-                    dis1 = dis2;
+                double diss = Math.abs(i - tempValue);
+                if(disf > diss){
+                    disf = diss;
                     close = i;
                 }
-                if(dis1 == dis2){
+                if(disf == diss){
                     if(i > close){
                         close = Math.abs(i);
                     }
@@ -159,14 +159,14 @@ public class TemperatureSeriesAnalysis {
         if(this.len == 0){
             throw new IllegalArgumentException();
         }
-        int count1 = 0;
+        int countf = 0;
         for(double i: this.list){
             if(i >= tempValue){
-                count1 += 1;
+                countf += 1;
             }
         }
         int counter = 0;
-        double[] res = new double[count1];
+        double[] res = new double[countf];
         for(double i: this.list){
             if(i >= tempValue){
                 res[counter] = i;
@@ -188,7 +188,7 @@ public class TemperatureSeriesAnalysis {
     }
 
     public int addTemps(double... temps) {
-        MinTemp(temps);
+        minTemp(temps);
         double[] nlist = Arrays.copyOf(this.list, this.len);
         int ln = this.len;
         list = new double[ln * 2];
