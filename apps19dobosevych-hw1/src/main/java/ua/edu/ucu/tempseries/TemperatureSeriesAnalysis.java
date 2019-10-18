@@ -28,7 +28,9 @@ public class TemperatureSeriesAnalysis {
     }
 
     public double average() {
-        if (this.len > 0) {
+        if (this.len == 0) {
+            throw new IllegalArgumentException();
+        }
             double aver;
             double sum = 0;
             for (int i = 0; i < this.len; i++) {
@@ -36,10 +38,6 @@ public class TemperatureSeriesAnalysis {
             }
             aver = sum / this.len;
             return aver;
-        }
-        else {
-            throw new IllegalArgumentException();
-        }
     }
 
     public double deviation() {
