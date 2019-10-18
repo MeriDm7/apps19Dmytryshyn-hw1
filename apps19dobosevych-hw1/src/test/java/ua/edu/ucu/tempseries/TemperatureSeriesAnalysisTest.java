@@ -246,6 +246,24 @@ public class TemperatureSeriesAnalysisTest {
         assertTrue(Arrays.equals(expResult, actualResult));
     }
 
-    
+    @Test
+    public void testFindTempsGreaterThenWithOneElementArray() {
+        double[] temperatureSeries = {5.0};
+        TemperatureSeriesAnalysis seriesAnalysis = new TemperatureSeriesAnalysis(temperatureSeries);
+        double[] expResult = {5.0};
+
+        double[] actualResult = seriesAnalysis.findTempsGreaterThen(0.0);
+
+        assertTrue(Arrays.equals(expResult, actualResult));
+    }
+
+    @Test(expected = IllegalArgumentException.class)
+    public void testFindTempsGreaterThenWithEmptyArray() {
+        double[] temperatureSeries = {};
+        TemperatureSeriesAnalysis seriesAnalysis = new TemperatureSeriesAnalysis(temperatureSeries);
+
+        seriesAnalysis.findTempsGreaterThen(0.0);
+    }
+
 }
 
